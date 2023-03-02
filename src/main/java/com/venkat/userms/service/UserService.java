@@ -6,8 +6,14 @@ import java.util.Optional;
 import com.venkat.userms.model.User;
 
 public interface UserService {
-    List<User> getAllUsers();
-    Optional<User> getUserById(Long userId);
-    User createUser(User user);
-    void deleteUser(Long userId);
+	List<User> getAllUsers();
+
+	Optional<User> getSingleUser(Long userId);
+
+	User createUser(User user);
+
+	void updateUser(User user);
+
+	void deleteUser(Long userId);
+
 }

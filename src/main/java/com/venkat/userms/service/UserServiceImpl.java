@@ -27,20 +27,25 @@ public class UserServiceImpl implements UserService {
 	}
 
 	@Override
-	public Optional<User> getUserById(Long userId) {
+	public Optional<User> getSingleUser(Long userId) {
 		LOGGER.info("************");
 		LOGGER.info("getting single user");
 		return userRepository.findById(userId);
 	}
 
 	@Override
-	public void deleteUser(Long userId) {
-		userRepository.deleteById(userId);
+	public User createUser(User user) {
+		User userCreated = userRepository.save(user);
+		return userCreated;
 	}
 
 	@Override
-	public User createUser(User user) {
-		return userRepository.save(user);
+	public void updateUser(User user) {
+
 	}
 
+	@Override
+	public void deleteUser(Long userId) {
+
+	}
 }
