@@ -15,7 +15,6 @@ import com.venkat.userms.model.User;
 import com.venkat.userms.service.UserService;
 
 @RestController
-@SuppressWarnings("rawtypes")
 public class UserResource {
 	private final UserService userService;
 
@@ -24,12 +23,12 @@ public class UserResource {
 	}
 
 	@GetMapping("/users")
-	public ResponseEntity getAllUsers() {
+	public ResponseEntity<?> getAllUsers() {
 		return ResponseEntity.ok(userService.getAllUsers());
 	}
 
 	@GetMapping("/users/{userId}")
-	public ResponseEntity getAllUsers(@PathVariable Long userId) {
+	public ResponseEntity<?> getAllUsers(@PathVariable Long userId) {
 		Optional<User> user = userService.getSingleUser(userId);
 		if (user.isPresent()) {
 			return ResponseEntity.ok(user.get());
@@ -38,16 +37,8 @@ public class UserResource {
 		return ResponseEntity.notFound().build();
 	}
 
-	/*
-	 * @DeleteMapping
-	 * 
-	 * @PutMapping
-	 * 
-	 * @PatchMapping
-	 */
-
 	@PostMapping("/users")
-	public ResponseEntity createUser(@RequestBody User user) throws URISyntaxException {
+	public ResponseEntity<?> createUser(@RequestBody User user) throws URISyntaxException {
 		User userCreated = userService.createUser(user);
 		return ResponseEntity.created(new URI(userCreated.getId().toString())).build();
 	}

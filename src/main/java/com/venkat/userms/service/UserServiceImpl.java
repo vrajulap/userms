@@ -22,14 +22,14 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public List<User> getAllUsers() {
 		LOGGER.info("************");
-		LOGGER.info("getting all users");
+		LOGGER.info("Getting all users");
 		return userRepository.findAll();
 	}
 
 	@Override
 	public Optional<User> getSingleUser(Long userId) {
 		LOGGER.info("************");
-		LOGGER.info("getting single user");
+		LOGGER.info("Getting user : {}",userId);
 		return userRepository.findById(userId);
 	}
 
